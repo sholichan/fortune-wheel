@@ -42,9 +42,11 @@ export default class PreloadScene extends Phaser.Scene {
 
         this.load.image('background', 'assets/img/Background.png')
         this.load.image('wheel', 'assets/img/Wheel.png')
+        this.load.image('wheel8', 'assets/img/spin8.png')
         this.load.image('pointer', 'assets/img/Pin.png')
         this.load.image('buttonspin', 'assets/img/Button.png')
-        this.load.image('questionform', 'assets/img/questionform.jpg')
+        this.load.image('buttonhome', 'assets/img/home-Button.png')
+        this.load.image('buttonspinagain', 'assets/img/spin-again.png')
 
     }
 

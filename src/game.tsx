@@ -12,8 +12,6 @@ import Questions5 from './scenes/questions5';
 import Questions6 from './scenes/questions6';
 import Questions7 from './scenes/questions7';
 import Questions8 from './scenes/questions8';
-import Questions9 from './scenes/questions9';
-import Questions10 from './scenes/questions10';
 
 const DEFAULT_WIDTH = 2887
 const DEFAULT_HEIGHT = 4882
@@ -44,8 +42,6 @@ const Game = () => {
             Questions6,
             Questions7,
             Questions8,
-            Questions9,
-            Questions10,
           ],
           physics: {
             default: 'arcade',
