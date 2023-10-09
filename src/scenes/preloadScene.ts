@@ -14,7 +14,7 @@ export default class PreloadScene extends Phaser.Scene {
             (value: number) => {
                 console.log(value);
                 this.progressBar.clear();
-                this.progressBar.fillStyle(0x257ca3, 1);
+                this.progressBar.fillStyle(0xff0000, 1);
                 this.progressBar.fillRect(
                     this.cameras.main.width / 4 - 2,
                     this.cameras.main.height / 2 - 18,
@@ -39,7 +39,6 @@ export default class PreloadScene extends Phaser.Scene {
             });
         this.add.text(this.cameras.main.width / 3.8, this.cameras.main.height / 2.5, `Loading...`,
             { color: '#257ca3', fontSize: '24px', fontStyle: 'bold' });
-
         this.load.image('background', 'assets/img/Background.png')
         this.load.image('wheel', 'assets/img/Wheel.png')
         this.load.image('wheel8', 'assets/img/spin8.png')
@@ -47,11 +46,13 @@ export default class PreloadScene extends Phaser.Scene {
         this.load.image('buttonspin', 'assets/img/Button.png')
         this.load.image('buttonhome', 'assets/img/home-Button.png')
         this.load.image('buttonspinagain', 'assets/img/spin-again.png')
+        this.load.image('buttonred', 'assets/img/button-merah.png')
+        this.load.image('buttonwhite', 'assets/img/button-putih.png')
 
     }
 
     create() {
-        //   this.scene.start('Question')
+        //   this.scene.start('Question1')
         this.scene.start('MainScene')
 
         /**
@@ -70,7 +71,7 @@ export default class PreloadScene extends Phaser.Scene {
     }
     private createLoadingBar() {
         this.loadingBar = this.add.graphics()
-        this.loadingBar.fillStyle(0x5dae47, 1);
+        this.loadingBar.fillStyle(0x257ca3, 1);
         this.loadingBar.fillRect(
             this.cameras.main.width / 4 - 2,
             this.cameras.main.height / 2 - 18,

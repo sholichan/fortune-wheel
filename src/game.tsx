@@ -3,7 +3,6 @@ import Phaser, { Game as GameType } from "phaser";
 import { useEffect, useState } from 'react';
 import PreloadScene from './scenes/preloadScene';
 import MainScene from './scenes/MainScene';
-import Questions from './scenes/questions1';
 import Questions1 from './scenes/questions1';
 import Questions2 from './scenes/questions2';
 import Questions3 from './scenes/questions3';

@@ -27,6 +27,7 @@ export default class MainScene extends Phaser.Scene {
         this.background = this.add.image(cam.width / 2 - 50, cam.height / 2, 'background')
             .setScale(1.1, 1)
         this.wheel = this.add.image(cam.width / 2, cam.height / 2.3, 'wheel8')
+        .setScale(0.8)
         this.pointer = this.add.image(cam.width / 2, cam.height / 2.3 - 20, 'pointer')
         this.buttonSpin = this.add.image(cam.width / 2, cam.height / 1.5 - 20, 'buttonspin')
         this.graphic = this.add.graphics()
@@ -48,7 +49,8 @@ export default class MainScene extends Phaser.Scene {
             var degrees = 36*multiDegrees
             this.prize = this.slices - 1 - Math.floor(degrees / (360 / this.slices))
             this.canSpin = false
-            var openScene = `Question${this.sliceName[this.prize]}`
+            // var openScene = `Question${this.sliceName[this.prize]}`
+            var openScene = `Question${this.sliceName[0]}`
             this.tweens.add({
                 targets: [this.wheel],
                 angle: 360 * round + degrees,

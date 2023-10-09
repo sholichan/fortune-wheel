@@ -1,14 +1,24 @@
 import { GameObjects } from "phaser"
 
+
 export default class Questions1 extends Phaser.Scene {
     background!: Phaser.GameObjects.Image
-    questionForm!: Phaser.GameObjects.Image
-    text!: Phaser.GameObjects.Text
-    answer!: Phaser.GameObjects.Text
+    buttonHome!: Phaser.GameObjects.Image
+    buttonSpinAgain!: Phaser.GameObjects.Image
+    buttonRed!: Phaser.GameObjects.Image
+    buttonWhite!: Phaser.GameObjects.Image
+    buttonCheck!: Phaser.GameObjects.Image
+    questionText!: Phaser.GameObjects.Text
+    answerText!: Phaser.GameObjects.Text
+    answerCheck!: Phaser.GameObjects.Text
+    answerRed!: Phaser.GameObjects.Text
+    answerWhite!: Phaser.GameObjects.Text
     graphic1!: Phaser.GameObjects.Graphics
     graphic2!: Phaser.GameObjects.Graphics
     graphic3!: Phaser.GameObjects.Graphics
     graphic4!: Phaser.GameObjects.Graphics
+    graphic5!: Phaser.GameObjects.Graphics
+    graphic6!: Phaser.GameObjects.Graphics
 
     constructor() {
         super({ key: 'Question1' })
@@ -16,115 +26,160 @@ export default class Questions1 extends Phaser.Scene {
 
     create() {
         const cam = this.cameras.main
-        this.background = this.add.image(cam.width / 2 - 50, cam.height / 2, 'background')
-            .setScale(1.1, 1)
+        this.background = this.add.image(cam.width / 2 - 80, cam.height / 2, 'background')
+            .setScale(1.6, 1.5)
+
+        //buttons
+        this.buttonRed = this.add.image(cam.width / 4 + 60, cam.height / 2.5, 'buttonred')
+            .setOrigin(0.5, 0.5)
+            .setScale(1.4)
+        this.buttonWhite = this.add.image(cam.width / 1.35 - 50, cam.height / 2.5, 'buttonwhite')
+            .setOrigin(0.5, 0.5)
+            .setScale(1.4)
+        this.buttonCheck = this.add.image(cam.width / 2, cam.height / 2, 'buttonwhite')
+            .setOrigin(0.5, 0.5)
+        this.buttonHome = this.add.image(cam.width / 4, cam.height / 1.3, 'buttonhome')
+            .setOrigin(0.5, 0.5)
+        this.buttonSpinAgain = this.add.image(cam.width / 1.35, cam.height / 1.3, 'buttonspinagain').setOrigin(0.5, 0.5)
 
         //Question
-        this.text = this.add.text(cam.width / 2, cam.height / 3, "Question1", {
-            font: "bold 150px Arial",
+        this.questionText = this.add.text(cam.width / 2, cam.height / 4,
+            "(...)  formulasi unik gabungan Zat Besi (Iron) dan\n\
+        Vitamin C yang dapat bantu meningkatkan\n\
+        penyerapan zat besi 2X Lipat.", {
+            font: "bold 140px BebasNeue",
             align: "center",
-            color: "red",
+            color: "black",
         }).setOrigin(0.5, 0.5)
 
         //Answer
-        var intervalPosText = [300, 600, 900, 1200]
-        var answers = ["A. Answer", "B. Answer", "C. Answer", "D. Answer"]
-        var textConfig = {
-            font: "bold 100px Arial",
-            align: "center",
-            color: "red",
-        }
-        intervalPosText.map((i, j = 0) => {
-            this.answer = this.add.text(cam.width / 4, cam.height / 3 + i, answers[j], textConfig);
-        })
+        this.answerRed = this.add.text(cam.width / 4 + 60, cam.height / 2.5, 'IRONC',
+            {
+                fontFamily: "BebasNeue",
+                fontSize: "110px",
+                align: "center",
+                color: "white",
+            })
+            .setOrigin(0.5)
+        this.answerWhite = this.add.text(cam.width / 1.35 - 50, cam.height / 2.5, 'HIGH FIBRE',
+            {
+                fontFamily: "BebasNeue",
+                fontSize: "110px",
+                fontStyle: "bold",
+                align: "center",
+                color: "black",
+            })
+            .setOrigin(0.5)
+        this.answerCheck = this.add.text(cam.width / 2, cam.height / 2, 'CEK DISINI!',
+            {
+                fontFamily: "BebasNeue",
+                fontSize: "60px",
+                fontStyle: "bold",
+                align: "center",
+                color: "black",
+            })
+            .setOrigin(0.5)
 
-        //graphic
-        var intervalPosGraph = [200, 500, 800, 1100]
+        this.graphic6 = this.add.graphics()
+        this.graphic6.fillStyle(0xcccccc, 1)
+        this.graphic6.fillRect(300, cam.height / 2 + 200, 2300, 500)
+        this.answerText = this.add.text(cam.width / 2, cam.height / 1.7,
+            'IronC yaitu molar rasio Zat Besi : Vitamin C (2:1)\n\
+        dapat bantu meningkatkan penyerapan\n\
+        zat besi 2X Lipat.',
+            {
+                fontFamily: "BebasNeue",
+                fontSize: "110px",
+                fontStyle: "bold",
+                align: "center",
+                color: "black",
+            })
+            .setOrigin(0.5)
+
+
+        //button
         this.graphic1 = this.add.graphics()
         this.graphic2 = this.add.graphics()
         this.graphic3 = this.add.graphics()
         this.graphic4 = this.add.graphics()
+        this.graphic5 = this.add.graphics()
 
-        this.graphic1.lineStyle(8, 0xFF0000, 1)
-        this.graphic2.lineStyle(8, 0xFF0000, 1)
-        this.graphic3.lineStyle(8, 0xFF0000, 1)
-        this.graphic4.lineStyle(8, 0xFF0000, 1)
+        // this.graphic1.lineStyle(8, 0xFF0000, 1)
+        // this.graphic2.lineStyle(8, 0xFF0000, 1)
+        // this.graphic3.lineStyle(8, 0xFF0000, 1)
+        // this.graphic4.lineStyle(8, 0xFF0000, 1)
+        // this.graphic5.lineStyle(8, 0xFF0000, 1)
 
-        this.graphic1.strokeRect(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[0], 1600, 300)
-        this.graphic2.strokeRect(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[1], 1600, 300)
-        this.graphic3.strokeRect(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[2], 1600, 300)
-        this.graphic4.strokeRect(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[3], 1600, 300)
+
+        // this.graphic1.strokeRect(cam.width / 4 - 450, cam.height / 2.5 - 138, 1020, 276)
+        // this.graphic2.strokeRect(cam.width / 1.35 - 560, cam.height / 2.5 - 138, 1020, 276)
+        // this.graphic3.strokeRect(cam.width / 2 - 380, cam.height / 2 - 100, 750, 200)
+        // this.graphic4.strokeCircle(cam.width / 4, cam.height / 1.3, 234)
+        // this.graphic5.strokeCircle(cam.width / 1.35, cam.height / 1.3, 234)
+
 
         this.graphic1.setInteractive(
             {
                 useHandCursor: true,
-                hitArea: new Phaser.Geom.Rectangle(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[0], 1600, 300),
+                hitArea: new Phaser.Geom.Rectangle(cam.width / 4 - 450, cam.height / 2.5 - 138, 1020, 276),
                 hitAreaCallback: Phaser.Geom.Rectangle.Contains,
             }
         )
         this.graphic2.setInteractive(
             {
                 useHandCursor: true,
-                hitArea: new Phaser.Geom.Rectangle(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[1], 1600, 300),
+                hitArea: new Phaser.Geom.Rectangle(cam.width / 1.35 - 560, cam.height / 2.5 - 138, 1020, 276),
                 hitAreaCallback: Phaser.Geom.Rectangle.Contains,
             }
         )
         this.graphic3.setInteractive(
             {
                 useHandCursor: true,
-                hitArea: new Phaser.Geom.Rectangle(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[2], 1600, 300),
+                hitArea: new Phaser.Geom.Rectangle(cam.width / 2 - 380, cam.height / 2 - 100, 750, 200),
                 hitAreaCallback: Phaser.Geom.Rectangle.Contains,
             }
         )
         this.graphic4.setInteractive(
             {
                 useHandCursor: true,
-                hitArea: new Phaser.Geom.Rectangle(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[3], 1600, 300),
-                hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+                hitArea: new Phaser.Geom.Circle(cam.width / 4, cam.height / 1.3, 234),
+                hitAreaCallback: Phaser.Geom.Circle.Contains,
+            }
+        )
+        this.graphic5.setInteractive(
+            {
+                useHandCursor: true,
+                hitArea: new Phaser.Geom.Circle(cam.width / 1.35, cam.height / 1.3, 234),
+                hitAreaCallback: Phaser.Geom.Circle.Contains,
             }
         )
 
 
         this.graphic1.on('pointerdown', () => {
-            this.graphic1.fillStyle(0xFFC0CB, 1) 
-            this.graphic1.fillRect(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[0], 1600, 300)
-            intervalPosText.map((i, j = 0) => {
-                this.answer = this.add.text(cam.width / 4, cam.height / 3 + i, answers[j], textConfig);
-            })
-            this.time.delayedCall(1000,()=>{this.scene.start('MainScene')})
-            
+            this.scene.start('MainScene')
+
         })
         this.graphic2.on('pointerdown', () => {
-            this.graphic2.fillStyle(0xFFC0CB, 1) 
-            this.graphic2.fillRect(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[1], 1600, 300)
-            intervalPosText.map((i, j = 0) => {
-                this.answer = this.add.text(cam.width / 4, cam.height / 3 + i, answers[j], textConfig);
-            })
-            this.time.delayedCall(1000,()=>{this.scene.start('MainScene')})
+            this.scene.start('MainScene')
+
         })
         this.graphic3.on('pointerdown', () => {
-            this.graphic3.fillStyle(0xFFC0CB, 1) 
-            this.graphic3.fillRect(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[2], 1600, 300)
-            intervalPosText.map((i, j = 0) => {
-                this.answer = this.add.text(cam.width / 4, cam.height / 3 + i, answers[j], textConfig);
-            })
-            this.time.delayedCall(1000,()=>{this.scene.start('MainScene')})
+            this.scene.start('MainScene')
+
         })
         this.graphic4.on('pointerdown', () => {
-            this.graphic4.fillStyle(0xFFC0CB, 1) 
-            this.graphic4.fillRect(cam.width / 4 - 80, cam.height / 3 + intervalPosGraph[3], 1600, 300)
-            intervalPosText.map((i, j = 0) => {
-                this.answer = this.add.text(cam.width / 4, cam.height / 3 + i, answers[j], textConfig);
-            })
-            this.time.delayedCall(1000,()=>{this.scene.start('MainScene')})
+
+            this.scene.start('MainScene')
+        })
+        this.graphic5.on('pointerdown', () => {
+
+            this.scene.start('MainScene')
         })
 
 
     }
 
     update() {
-        var intervalPosGraph = [200, 500, 800, 1100]
-        const cam = this.cameras.main
 
     }
 
