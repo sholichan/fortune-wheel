@@ -1,3 +1,4 @@
+import { log } from "console"
 import { GameObjects } from "phaser"
 
 
@@ -19,6 +20,8 @@ export default class Questions1 extends Phaser.Scene {
     graphic4!: Phaser.GameObjects.Graphics
     graphic5!: Phaser.GameObjects.Graphics
     graphic6!: Phaser.GameObjects.Graphics
+    answer!: boolean
+    answerDesc!: boolean
 
     constructor() {
         super({ key: 'Question1' })
@@ -26,6 +29,8 @@ export default class Questions1 extends Phaser.Scene {
 
     create() {
         const cam = this.cameras.main
+        this.answer = false
+        this.answerDesc = false
         this.background = this.add.image(cam.width / 2 - 80, cam.height / 2, 'background')
             .setScale(1.6, 1.5)
 
@@ -33,7 +38,7 @@ export default class Questions1 extends Phaser.Scene {
         this.buttonRed = this.add.image(cam.width / 4 + 60, cam.height / 2.5, 'buttonred')
             .setOrigin(0.5, 0.5)
             .setScale(1.4)
-        this.buttonWhite = this.add.image(cam.width / 1.35 - 50, cam.height / 2.5, 'buttonwhite')
+        this.buttonWhite = this.add.image(cam.width / 1.35 - 50, cam.height / 2.5, 'buttonred')
             .setOrigin(0.5, 0.5)
             .setScale(1.4)
         this.buttonCheck = this.add.image(cam.width / 2, cam.height / 2, 'buttonwhite')
@@ -43,50 +48,62 @@ export default class Questions1 extends Phaser.Scene {
         this.buttonSpinAgain = this.add.image(cam.width / 1.35, cam.height / 1.3, 'buttonspinagain').setOrigin(0.5, 0.5)
 
         //Question
-        this.questionText = this.add.text(cam.width / 2, cam.height / 4,
-            "(...)  formulasi unik gabungan Zat Besi (Iron) dan\n\
-        Vitamin C yang dapat bantu meningkatkan\n\
-        penyerapan zat besi 2X Lipat.", {
-            font: "bold 140px BebasNeue",
-            align: "center",
-            color: "black",
-        }).setOrigin(0.5, 0.5)
+        this.time.delayedCall(100, () => {
+
+            this.questionText = this.add.text(cam.width / 2, cam.height / 4,
+                "(...)  formulasi unik gabungan Zat Besi (Iron) dan\n\
+            Vitamin C yang dapat bantu meningkatkan\n\
+            penyerapan zat besi 2X Lipat.", {
+                font: "bold 140px BebasNeue",
+                align: "center",
+                color: "black",
+            }).setOrigin(0.5, 0.5)
+        })
 
         //Answer
-        this.answerRed = this.add.text(cam.width / 4 + 60, cam.height / 2.5, 'IRONC',
-            {
-                fontFamily: "BebasNeue",
-                fontSize: "110px",
-                align: "center",
-                color: "white",
-            })
-            .setOrigin(0.5)
-        this.answerWhite = this.add.text(cam.width / 1.35 - 50, cam.height / 2.5, 'HIGH FIBRE',
-            {
-                fontFamily: "BebasNeue",
-                fontSize: "110px",
-                fontStyle: "bold",
-                align: "center",
-                color: "black",
-            })
-            .setOrigin(0.5)
-        this.answerCheck = this.add.text(cam.width / 2, cam.height / 2, 'CEK DISINI!',
-            {
-                fontFamily: "BebasNeue",
-                fontSize: "60px",
-                fontStyle: "bold",
-                align: "center",
-                color: "black",
-            })
-            .setOrigin(0.5)
+        this.time.delayedCall(100, () => {
+
+            this.answerRed = this.add.text(cam.width / 4 + 60, cam.height / 2.5, 'IRONC',
+                {
+                    fontFamily: "BebasNeue",
+                    fontSize: "120px",
+                    align: "center",
+                    color: "white",
+                })
+                .setOrigin(0.5)
+        })
+
+        this.time.delayedCall(100, () => {
+
+            this.answerWhite = this.add.text(cam.width / 1.35 - 50, cam.height / 2.5, 'HIGH FIBRE',
+                {
+                    fontFamily: "BebasNeue",
+                    fontSize: "120px",
+                    fontStyle: "bold",
+                    align: "center",
+                    color: "white",
+                })
+                .setOrigin(0.5)
+        })
+
+        this.time.delayedCall(100, () => {
+
+            this.answerCheck = this.add.text(cam.width / 2, cam.height / 2, 'CEK DISINI!',
+                {
+                    fontFamily: "BebasNeue",
+                    fontSize: "100px",
+                    fontStyle: "bold",
+                    align: "center",
+                    color: "black",
+                })
+                .setOrigin(0.5)
+        })
 
         this.graphic6 = this.add.graphics()
         this.graphic6.fillStyle(0xcccccc, 1)
-        this.graphic6.fillRect(300, cam.height / 2 + 200, 2300, 500)
-        this.answerText = this.add.text(cam.width / 2, cam.height / 1.7,
-            'IronC yaitu molar rasio Zat Besi : Vitamin C (2:1)\n\
-        dapat bantu meningkatkan penyerapan\n\
-        zat besi 2X Lipat.',
+        this.graphic6.fillRect(300, cam.height / 2 + 200, 2300, 700)
+        this.answerText = this.add.text(cam.width / 2, cam.height / 1.6,
+            '',
             {
                 fontFamily: "BebasNeue",
                 fontSize: "110px",
@@ -94,7 +111,7 @@ export default class Questions1 extends Phaser.Scene {
                 align: "center",
                 color: "black",
             })
-            .setOrigin(0.5)
+            .setOrigin(0.5, 1)
 
 
         //button
@@ -156,24 +173,37 @@ export default class Questions1 extends Phaser.Scene {
 
 
         this.graphic1.on('pointerdown', () => {
-            this.scene.start('MainScene')
-
+            this.buttonWhite.setAlpha(0.5)
+            this.answer = true
         })
         this.graphic2.on('pointerdown', () => {
-            this.scene.start('MainScene')
+            this.buttonRed.setAlpha(0.5)
+            this.answer = true
+            console.log(this.answer);
 
         })
         this.graphic3.on('pointerdown', () => {
-            this.scene.start('MainScene')
+            if (this.answer == true) {
+                this.answerText.setText(
+                    'IronC yaitu molar rasio Zat Besi : Vitamin C (2:1)\n\dapat bantu meningkatkan penyerapan\n\zat besi 2X Lipat.'
+                )
+            }
+            console.log(this.answerDesc);
+            console.log(this.answerText);
 
         })
         this.graphic4.on('pointerdown', () => {
+            if (this.answer == true) {
 
-            this.scene.start('MainScene')
+                this.scene.start('MainScene')
+            }
+
         })
         this.graphic5.on('pointerdown', () => {
+            if (this.answer == true) {
 
-            this.scene.start('MainScene')
+                this.scene.start('MainScene')
+            }
         })
 
 
