@@ -46,7 +46,7 @@ export default class PreloadScene extends Phaser.Scene {
         this.load.image('buttonspin', 'assets/img/Button.png')
         this.load.image('buttonhome', 'assets/img/Home-button.png')
         this.load.image('buttonspinagain', 'assets/img/Spin-again.png')
-        this.load.image('buttonred', 'assets/img/button-merah.png')
+        this.load.image('buttonred', 'assets/img/Button-merah.png')
         this.load.image('buttonwhite', 'assets/img/button-putih.png')
 
     }
